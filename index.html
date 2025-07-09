@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Classroom Monitoring System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      background-color: #007acc;
+      color: white;
+      padding: 15px 0;
+      border-radius: 8px;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .video-section video {
+      width: 100%;
+      border: 4px solid #007acc;
+      border-radius: 8px;
+    }
+
+    .info-section {
+      background-color: #e6f2ff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Skill Training Classroom Monitoring</h1>
+    </header>
+
+    <main>
+      <div class="video-section">
+        <video id="classVideo" controls autoplay muted>
+          <source src="classroom_video.mp4" type="video/ogg" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="info-section">
+        <h2>Session Info</h2>
+        <p><strong>Topic:</strong> Web Development Basics</p>
+        <p><strong>Trainer:</strong> Ms. Anjali Sharma</p>
+        <p><strong>Start Time:</strong> <span id="startTime">--</span></p>
+        <p><strong>Elapsed Time:</strong> <span id="timer">00:00:00</span></p>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 Skill Training Programme | Monitoring System</p>
+    </footer>
+  </div>
+
+  <script>
+    window.onload = function () {
+      const startTimeEl = document.getElementById("startTime");
+      const timerEl = document.getElementById("timer");
+
+      const startTime = new Date();
+      startTimeEl.textContent = startTime.toLocaleTimeString();
+
+      function updateTimer() {
+        const now = new Date();
+        const elapsed = new Date(now - startTime);
+
+        const hours = String(elapsed.getUTCHours()).padStart(2, "0");
+        const minutes = String(elapsed.getUTCMinutes()).padStart(2, "0");
+        const seconds = String(elapsed.getUTCSeconds()).padStart(2, "0");
+
+        timerEl.textContent = `${hours}:${minutes}:${seconds}`;
+      }
+
+      setInterval(updateTimer, 1000);
+    };
+  </script>
+</body>
+</html>
